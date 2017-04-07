@@ -4,8 +4,8 @@ public class LeagueInvaders {
 
 	JFrame frame;
 	GamePanel panel;
-	final int FRAMEWIDTH = 500;
-	final int FRAMEHEIGHT = 800;
+	static final int FRAME_WIDTH = 500;
+	static final int FRAME_HEIGHT = 800;
 	
 	LeagueInvaders(){
 		
@@ -18,7 +18,7 @@ public class LeagueInvaders {
 	void setup(){
 		
 		frame.setVisible(true);
-		frame.setSize(FRAMEWIDTH, FRAMEHEIGHT);
+		frame.setSize(FRAME_WIDTH, FRAME_HEIGHT);
 		frame.add(panel);
 		frame.addKeyListener(panel);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

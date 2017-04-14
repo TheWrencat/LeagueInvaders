@@ -1,4 +1,5 @@
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -10,15 +11,19 @@ import javax.swing.Timer;
 
 public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	
+	//Member Variables
 	final int MENU_STATE = 0;
 	final int GAME_STATE = 1;
 	final int END_STATE = 2;
 	int currentState = MENU_STATE;
 	Timer timer;
+	Font titleFont;
 	
+	//Constructor
 	GamePanel(){
 		timer = new Timer(1000/60, this);
 		this.startGame();
+		titleFont = new Font("Arial", Font.PLAIN, 48);
 			}
 	
 	void startGame(){
@@ -40,10 +45,12 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 		
 	}
 	
-
+	//Draw States
 	void drawMenuState(Graphics g){
 		g.setColor(Color.BLUE);
 		g.fillRect(0, 0, LeagueInvaders.FRAME_WIDTH, LeagueInvaders.FRAME_HEIGHT);
+		g.setFont(titleFont);
+		g.
 	}
 
 	void drawGameState(Graphics g){

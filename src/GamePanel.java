@@ -18,6 +18,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	int currentState = MENU_STATE;
 	Timer timer;
 	Font titleFont;
+	Rocketship rocketShip = new Rocketship(250, 700, 50, 50);
 	
 	//Constructor
 	GamePanel(){
@@ -38,7 +39,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	}
 	
 	void updateGameState(){
-		
+		rocketShip.update();
 	}
 
 	void updateEndState(){
@@ -50,16 +51,24 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 		g.setColor(Color.BLUE);
 		g.fillRect(0, 0, LeagueInvaders.FRAME_WIDTH, LeagueInvaders.FRAME_HEIGHT);
 		g.setFont(titleFont);
+		g.setColor(Color.BLACK);
+		g.drawString("Leauge Invaders", 70, 200);
+		g.drawString("START GAME", 85, 250);
 	}
 
 	void drawGameState(Graphics g){
 		g.setColor(Color.BLACK);
 		g.fillRect(0, 0, LeagueInvaders.FRAME_WIDTH, LeagueInvaders.FRAME_HEIGHT);
+		rocketShip.draw(g);
 	}
 
 	void drawEndState(Graphics g){
 		g.setColor(Color.RED);
 		g.fillRect(0, 0, LeagueInvaders.FRAME_WIDTH, LeagueInvaders.FRAME_HEIGHT);
+		g.setFont(titleFont);
+		g.setColor(Color.BLACK);
+		g.drawString("GAME OVER", 100, 200);
+		g.drawString("restart", 180, 250);
 	}
 	
 	
@@ -110,12 +119,19 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 				currentState = MENU_STATE;
 			}
 		}
+		if(e.getKeyCode() == KeyEvent.VK_UP){
+			rocketShip.ySpeed=-2;
+		}
 	}
 
 	@Override
 	public void keyReleased(KeyEvent e) {
 		// TODO Auto-generated method stub
 		System.out.println("key released");
+		
+		if(e.getKeyCode() == KeyEvent.VK_UP){
+			rocketShip.ySpeed= 0;
+		}
 	}
 	
 	

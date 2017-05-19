@@ -19,12 +19,16 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	Timer timer;
 	Font titleFont;
 	Rocketship rocketShip = new Rocketship(250, 700, 50, 50);
+	ObjectManager manager = new ObjectManager();
+	
 	
 	//Constructor
 	GamePanel(){
 		timer = new Timer(1000/60, this);
 		this.startGame();
 		titleFont = new Font("Arial", Font.PLAIN, 48);
+		manager.addObject(rocketShip); 
+
 			}
 	
 	void startGame(){
@@ -39,7 +43,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	}
 	
 	void updateGameState(){
-		rocketShip.update();
+	manager.update();
 	}
 
 	void updateEndState(){
@@ -59,7 +63,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	void drawGameState(Graphics g){
 		g.setColor(Color.BLACK);
 		g.fillRect(0, 0, LeagueInvaders.FRAME_WIDTH, LeagueInvaders.FRAME_HEIGHT);
-		rocketShip.draw(g);
+		manager.draw(g);
 	}
 
 	void drawEndState(Graphics g){
@@ -119,8 +123,22 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 				currentState = MENU_STATE;
 			}
 		}
+		if(e.getKeyCode() == KeyEvent.VK_SPACE){
+			Projectile pro = new Projectile(rocketShip.x+rocketShip.width/2 -5, rocketShip.y, 10, 10);
+			manager.addObject(pro);
+			}
 		if(e.getKeyCode() == KeyEvent.VK_UP){
 			rocketShip.ySpeed=-2;
+		}
+		if(e.getKeyCode() == KeyEvent.VK_DOWN){
+			rocketShip.ySpeed=+2;
+			
+		}
+		if(e.getKeyCode() == KeyEvent.VK_RIGHT){
+			rocketShip.xSpeed=+2;
+		}
+		if(e.getKeyCode() == KeyEvent.VK_LEFT){
+			rocketShip.xSpeed=-2;
 		}
 	}
 
@@ -131,6 +149,16 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 		
 		if(e.getKeyCode() == KeyEvent.VK_UP){
 			rocketShip.ySpeed= 0;
+		}
+		if(e.getKeyCode() == KeyEvent.VK_DOWN){
+			rocketShip.ySpeed=0;
+			
+		}
+		if(e.getKeyCode() == KeyEvent.VK_RIGHT){
+			rocketShip.xSpeed=0;
+		}
+		if(e.getKeyCode() == KeyEvent.VK_LEFT){
+			rocketShip.xSpeed=0;
 		}
 	}
 	

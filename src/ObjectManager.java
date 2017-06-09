@@ -6,7 +6,7 @@ import java.util.Random;
 public class ObjectManager {
 	ArrayList<GameObject> objects;
 	
-	private int score = 0;
+	int score = 0;
 	
 	long enemyTimer = 0;
 	int enemySpawnTime = 1000;
